@@ -20,7 +20,7 @@ int get_reversed_number(int number)
 int first_digit(int n)
 {
     // Find total number of digits - 1
-    int digits = to_string(n).length();
+    int digits = (int)log10(n);
 
     // Find first digit
     n = (int)(n / pow(10, digits));
@@ -31,7 +31,7 @@ int first_digit(int n)
 
 int main() 
 {
-    int i = 281089083;
+    int i = 0;
     while(true) 
     {
         int reversed_number = get_reversed_number(i);
@@ -52,10 +52,8 @@ int main()
         i += 1;
         if((first_digit(i) % 2) != 0)
         {
-            int digits = to_string(i).length();
+            int digits = to_string(i).length()-1;
             i += pow(10, digits);
         }
-
-        
     }
 }
