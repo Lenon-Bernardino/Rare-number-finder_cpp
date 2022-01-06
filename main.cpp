@@ -6,9 +6,9 @@
 
 using namespace std;
 
-int get_reversed_number(int number)
+long long int get_reversed_number(long long int number)
 {
-    int reversed_number = 0;
+    long long int reversed_number = 0;
     while (number > 0)
     {
         reversed_number = reversed_number * 10 + number % 10;
@@ -17,13 +17,13 @@ int get_reversed_number(int number)
     return reversed_number;
 }
 
-int first_digit(int n)
+long long int first_digit(long long int n)
 {
     // Find total number of digits - 1
-    int digits = (int)log10(n);
+    long long int digits = (long long int)log10(n);
 
     // Find first digit
-    n = (int)(n / pow(10, digits));
+    n = (long long int)(n / pow(10, digits));
 
     // Return first digit
     return n;
@@ -31,10 +31,10 @@ int first_digit(int n)
 
 int main() 
 {
-    int i = 0;
+    long long int i = 281089082;
     while(true) 
     {
-        int reversed_number = get_reversed_number(i);
+        long long int reversed_number = get_reversed_number(i);
         if(reversed_number != i)
         {
             double root = sqrt(reversed_number + i);
@@ -52,7 +52,7 @@ int main()
         i += 1;
         if((first_digit(i) % 2) != 0)
         {
-            int digits = to_string(i).length()-1;
+            long long int digits = to_string(i).length()-1;
             i += pow(10, digits);
         }
     }
