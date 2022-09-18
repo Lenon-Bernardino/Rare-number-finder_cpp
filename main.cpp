@@ -70,6 +70,7 @@ int main()
 	int Q_digit;
 	
 	int iterations = 0;
+	int got_to_end = 0;
 	int num_digital_root = 0;
 
 	std::vector<std::string> found_numbers;
@@ -82,9 +83,11 @@ int main()
 		if(iterations == 10000)
 		{
 			std::cout << "\n==========================================";
-			std::cout << "\nnum = " << num << "\n";
-			std::cout << "Found numbers: " << display_vector(found_numbers);
+			std::cout << "\nnum = " << num;
+			std::cout << "\nFound numbers: " << display_vector(found_numbers);
+			std::cout << "\nHad to use slow sqrt " << got_to_end*100/iterations << "% of the time";
 			std::cout << "\n==========================================\n\n";
+			got_to_end = 0;
 			iterations = 0;
 		}
 		
@@ -207,5 +210,6 @@ int main()
 				std::cout << "\n==========================================\n\n";
 			}
 		}
+		got_to_end += 1;
 	}
 }
