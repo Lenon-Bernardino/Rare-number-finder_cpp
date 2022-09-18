@@ -26,6 +26,18 @@ std::string display_vector(std::vector<std::string> thing)
     return display;
 }
 
+int get_digital_root(std::string num)
+{
+    if (num.compare("0") == 0)
+        return 0;
+        
+    int ans = 0;
+    for (int i=0; i<num.length(); i++)
+        ans = (ans + num[i]-'0') % 9;
+ 
+    return (ans == 0)? 9 : ans % 9;
+}
+
 std::string reverse_string(std::string str)
 {
     std::string new_string = "";
@@ -58,6 +70,7 @@ int main()
 	int Q_digit;
 	
 	int iterations = 0;
+	int num_digital_root = 0;
 
 	std::vector<std::string> found_numbers;
 
@@ -84,6 +97,12 @@ int main()
 		{
 			num += pow(10, num_str.size()-1);
 			num_str = num.to_string();
+		}
+		
+		num_digital_root = get_digital_root(num_str);
+		if(num_digital_root != 2 && num_digital_root != 5 && num_digital_root != 8 && num_digital_root != 9)
+		{
+			continue;
 		}
 		
 		// Implementing some properties with the first 4 and last 4 numbers
