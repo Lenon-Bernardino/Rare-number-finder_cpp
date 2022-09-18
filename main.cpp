@@ -56,13 +56,25 @@ int main()
 	int N_digit;
 	int P_digit;
 	int Q_digit;
+	
+	int iterations = 0;
 
 	std::vector<std::string> found_numbers;
 
 	while(true)
 	{
 		//Sleep(1000);
-
+		iterations += 1;
+		
+		if(iterations == 10000)
+		{
+			std::cout << "\n==========================================";
+			std::cout << "\nnum = " << num << "\n";
+			std::cout << "Found numbers: " << display_vector(found_numbers);
+			std::cout << "\n==========================================\n\n";
+			iterations = 0;
+		}
+		
 		num += 1;
 		num_str = num.to_string();
 		A_digit = (int)num_str[0]-48;
@@ -70,12 +82,9 @@ int main()
 
 		if(valid_first_digit == false) // Skips if the first number is odd
 		{
-			//std::cout << "\nAdding: " << pow(10, num_str.size()-1);
 			num += pow(10, num_str.size()-1);
 			num_str = num.to_string();
-			//std::cout << "\ncorrected to " << num << "\n";
 		}
-		//Q_digit = std::stoi((num % 10).to_string());
 		
 		// Implementing some properties with the first 4 and last 4 numbers
 		if(num_str.size() >= 4)
@@ -154,16 +163,7 @@ int main()
 			}
 		}
 		
-		// From here on it's logging and slow stuff that needs to be avoided.
-		std::cout << "\n==========================================";
-		std::cout << "\nnum = " << num << "\n";
-		std::cout << "Found numbers: " << display_vector(found_numbers);
-		std::cout << "\n==========================================";
-		
-		//std::cout << "num2 = " << num2 << "\n";
-		//std::cout << "sum = " << num+num2 << "\n";
-		//std::cout << "result = " << result << "\n";
-		//std::cout << "==================================================================";
+		// From here on it's slow stuff that needs to be avoided.
 
 		reversed_num_str = reverse_string(num_str);
 		num2 = reversed_num_str;
@@ -183,6 +183,9 @@ int main()
 			if(result*result == subtraction)
 			{
 				found_numbers.push_back(num.to_string());
+				std::cout << "\n==========================================";
+				std::cout << "\nFound numbers: " << display_vector(found_numbers);
+				std::cout << "\n==========================================\n\n";
 			}
 		}
 	}
